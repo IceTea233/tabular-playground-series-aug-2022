@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import sklearn
+import pickle
 import utils
 from sklearn.model_selection import train_test_split
 from sklearn.svm import SVC
@@ -10,6 +11,7 @@ from sklearn.model_selection import KFold
 from sklearn.metrics import accuracy_score
 
 TRAIN_DATA_PATH = 'train.csv'
+MODEL_SAVE_PATH = 'model.pk'
 TRAIN_SIZE = 0.8
 
 def preprocess():
@@ -36,5 +38,6 @@ if __name__ == '__main__':
     model = train(X_train, Y_train)
     acc = model.score(X_val, Y_val)
     print('acc = ', acc)
-    print('result: ')
-    print(model.predict_proba(X_val))
+    with open(MODEL_SAVE_PATH, 'wb') as f:
+        pickle.dump(model, f)
+    print('OK. Model is trained and saved at "%s"' % (MODEL_SAVE_PATH))

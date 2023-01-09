@@ -60,3 +60,4 @@ The model achieves the following performance on :
   - [Solution](https://www.kaggle.com/competitions/tabular-playground-series-aug-2022/discussion/349810) posted by nour hadrich
     - 3 vs 2 cross validation
     - Logistic Regression as one possible model
+- Data are from the [contest page on Kaggle](https://www.kaggle.com/competitions/tabular-playground-series-aug-2022/data)

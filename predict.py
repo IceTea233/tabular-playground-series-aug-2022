@@ -36,7 +36,7 @@ def inference(model):
         x = test_features.loc[test_features['id'] == row['id']]
         x = x.drop(labels=['id'], axis='columns').values
 
-        pred = model.predict_proba(x)[0][0]
+        pred = model.predict_proba(x)[:, 1].reshape(-1, 1)
         
         # print('#%d pred = %f' % (row['id'], pred))
         submission_df.at[index, 'failure'] = pred

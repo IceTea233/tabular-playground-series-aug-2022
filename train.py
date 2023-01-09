@@ -68,8 +68,7 @@ def train(X, Y):
                 pred = model.predict_proba(X_fold_val.values)[:, 1].reshape(-1, 1)
                 score = roc_auc_score(Y_fold_val.values, pred)
                 score_mean += score / len(folds_dict)
-            print('C = %.9f, solver = %18s, score_mean = %.6f' %
-                  (C, solver, score_mean))
+            print('C = %.9f, solver = %18s, score_mean = %.6f' % (C, solver, score_mean))
             if score_mean > best_score:
                 best_C = C
                 best_solver = solver

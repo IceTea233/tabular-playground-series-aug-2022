@@ -31,7 +31,6 @@ def inference(model):
     columns.extend(utils.get_common_columns(features, test_features))
     test_features = test_features[columns]
 
-    print(test_features.columns.values)
     total_row = len(submission_df.index)
     print('total test cases = ', total_row)
     progress = 0
@@ -51,3 +50,4 @@ if __name__ == '__main__':
     model = load_model(MODEL_SAVE_PATH)
     
     inference(model)
+    print(f'Ok. Result saved at "{OUTPUT_PATH}"')

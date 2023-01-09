@@ -32,14 +32,19 @@ def inference(model):
     test_features = test_features[columns]
 
     print(test_features.columns.values)
+    total_row = len(submission_df.index)
+    print('total test cases = ', total_row)
+    progress = 0
     for index, row in submission_df.iterrows():
         x = test_features.loc[test_features['id'] == row['id']]
-        x = x.drop(labels=['id'], axis='columns').values
+        x = x.drop(labels=['id', 'product_code'], axis='columns').values
 
         pred = model.predict_proba(x)[:, 1].reshape(-1, 1)
         
-        # print('#%d pred = %f' % (row['id'], pred))
         submission_df.at[index, 'failure'] = pred
+        if progress <= index / total_row:
+            progress += 0.1
+            print('%.0f%%...' % (progress * 100))
     submission_df.to_csv(OUTPUT_PATH, index=False)
 
 if __name__ == '__main__':

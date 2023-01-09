@@ -5,8 +5,10 @@ from sklearn.preprocessing import OneHotEncoder
 import matplotlib.pyplot as plt
 
 def one_hot_encode(df):
+    product_code = df['product_code']
     data_dum = pd.get_dummies(df)
-    return data_dum
+    output_df = pd.concat([product_code, data_dum], axis='columns')
+    return output_df
 
 def fill_NaN_with_mean(df):
     df.fillna(df.mean(numeric_only=True), inplace=True)
@@ -14,6 +16,7 @@ def fill_NaN_with_mean(df):
 
 def get_common_columns(df1, df2):
     columns = set(df1.columns.values) & set(df2.columns.values)
+    print(columns)
     return sorted(columns)
 
 def load_data(file_path: str, label=None, drop_id=True):

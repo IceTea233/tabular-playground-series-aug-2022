@@ -31,7 +31,7 @@ def inference(model):
     columns.extend(utils.get_common_columns(features, test_features))
     test_features = test_features[columns]
 
-    print(test_features.head())
+    print(test_features.columns.values)
     for index, row in submission_df.iterrows():
         x = test_features.loc[test_features['id'] == row['id']]
         x = x.drop(labels=['id'], axis='columns').values
@@ -40,7 +40,7 @@ def inference(model):
         
         # print('#%d pred = %f' % (row['id'], pred))
         submission_df.at[index, 'failure'] = pred
-    submission_df.to_csv(OUTPUT_PATH)
+    submission_df.to_csv(OUTPUT_PATH, index=False)
 
 if __name__ == '__main__':
     model = load_model(MODEL_SAVE_PATH)

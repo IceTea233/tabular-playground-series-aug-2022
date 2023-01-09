@@ -18,9 +18,10 @@ pipenv shell
 
 Or you may also install the dependencies manually.
 
+- `python` (`3.9` is recommended)
 - `numpy`
 - `pandas`
-- `sciit-learn`
+- `scikit-learn`
 
 ## Training
 

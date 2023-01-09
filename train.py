@@ -4,15 +4,9 @@ import sklearn
 import pickle
 import utils
 from sklearn.model_selection import train_test_split
-from sklearn.svm import SVC
-from sklearn.ensemble import AdaBoostClassifier
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.model_selection import KFold
-from sklearn.metrics import accuracy_score, roc_auc_score
+from sklearn.metrics import roc_auc_score
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import GroupKFold
-from sklearn.ensemble import VotingClassifier
-import random
 
 TRAIN_DATA_PATH = 'train.csv'
 TEST_DATA_PATH = 'test.csv'

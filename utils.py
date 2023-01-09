@@ -12,10 +12,19 @@ def fill_NaN_with_mean(df):
     df.fillna(df.mean(numeric_only=True), inplace=True)
     return df
 
-def load_data(file_path: str):
+def get_common_columns(df1, df2):
+    columns = set(df1.columns.values) & set(df2.columns.values)
+    return sorted(columns)
+
+def load_data(file_path: str, label=None, drop_id=True):
     data = pd.read_csv(file_path)
-    labels = data['failure']
-    features = data.drop(labels=['failure', 'id'], axis="columns")
+    labels = data[label] if label else None
+
+    features = data
+    if (drop_id):
+        features = features.drop(labels=['id'], axis='columns')
+    if (label):
+        features = features.drop(labels=[label], axis='columns')
     return features, labels
 
 def plot_matrix(acc_grid, gamma_list, c_list):

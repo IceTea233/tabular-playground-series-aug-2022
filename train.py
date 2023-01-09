@@ -11,14 +11,22 @@ from sklearn.model_selection import KFold
 from sklearn.metrics import accuracy_score
 
 TRAIN_DATA_PATH = 'train.csv'
+TEST_DATA_PATH = 'test.csv'
 MODEL_SAVE_PATH = 'model.pk'
 TRAIN_SIZE = 0.8
 
 def preprocess():
-    features, labels = utils.load_data(TRAIN_DATA_PATH)
+    features, labels = utils.load_data(TRAIN_DATA_PATH, label='failure')
     features = utils.one_hot_encode(features)
     features = utils.fill_NaN_with_mean(features)
     labels = utils.fill_NaN_with_mean(labels)
+
+    test_features = utils.load_data(TEST_DATA_PATH)[0]
+    test_features = utils.one_hot_encode(test_features)
+    test_features = utils.fill_NaN_with_mean(test_features)
+    
+    columns = utils.get_common_columns(features, test_features)
+    features = features[columns]
 
     return features, labels
 
@@ -40,4 +48,6 @@ if __name__ == '__main__':
     print('acc = ', acc)
     with open(MODEL_SAVE_PATH, 'wb') as f:
         pickle.dump(model, f)
-    print('OK. Model is trained and saved at "%s"' % (MODEL_SAVE_PATH))
+        print('OK. Model has been trained with:')
+        print('    Number of data:', len(features.index))
+        print('Number of features:', len(features.columns))

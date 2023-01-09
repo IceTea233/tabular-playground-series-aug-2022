@@ -45,7 +45,7 @@ python predict.py
 
 You can download pretrained models here:
 
-- TODO
+- https://drive.google.com/file/d/1gEAnvDM2U53suH8ZdcbaCO2qlxhjkte1/view?usp=share_link
 
 ## Results
 

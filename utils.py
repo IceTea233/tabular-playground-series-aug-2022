@@ -1,8 +1,6 @@
 import numpy as np
 import pandas as pd
 from pandas import DataFrame as df
-from sklearn.preprocessing import OneHotEncoder
-import matplotlib.pyplot as plt
 
 def one_hot_encode(df):
     product_code = df['product_code']

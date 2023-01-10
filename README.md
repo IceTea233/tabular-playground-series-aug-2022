@@ -51,8 +51,9 @@ You can download pretrained models here:
 
 The model achieves the following performance on :
 
-- validation score (ROC): `0.6047459583156607`
-- Public on Kaggle: `0.58601`
+- validation score (ROC): 0.6047459583156607
+- Public Score on Kaggle: 0.58601
+- Private Score on Kaggle: 0.59003
 
 ## References
 
